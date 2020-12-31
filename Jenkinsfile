@@ -1,6 +1,14 @@
 pipeline {
     agent any
     stages {
+        stage('Back-end') {
+            agent {
+                docker { image 'maven:3-alpine' }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
         stage('git repo & clean') {
             steps {
                bat "rmdir  /s /q TicketBookingServiceJunitTesting"
